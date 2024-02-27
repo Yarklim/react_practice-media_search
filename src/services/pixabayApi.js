@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseURL = 'https://pixabay.com/api/';
 const API_KEY = '33618403-e49ffccd3be3cb931e6ce1749';
 
-export async function fetchMedia(q, page) {
+export const fetchMedia = async (q, page = 1) => {
   const params = new URLSearchParams({
     key: API_KEY,
     q,
@@ -17,4 +17,4 @@ export async function fetchMedia(q, page) {
   const { data } = await axios.get(`${baseURL}?${params}`);
 
   return data;
-}
+};

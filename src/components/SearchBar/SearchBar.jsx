@@ -37,7 +37,7 @@ const SearchBar = ({ onSubmit }) => {
         autoFocus
       />
       <Button type="submit">
-        <p>Search</p>
+        <span>Search</span>
       </Button>
     </form>
   );

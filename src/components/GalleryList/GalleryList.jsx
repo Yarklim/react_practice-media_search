@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { fetchMedia } from '../../services/pixabayApi';
 import GalleryItem from '../GalleryItem/GalleryItem';
-
-import s from './GalleryList.module.scss';
 import Button from '../ui/Button/Button';
 import Spinner from '../Spinner/Spinner';
+
+import s from './GalleryList.module.scss';
 
 const GalleryList = (props) => {
   const [query, setQuery] = useState('');
@@ -12,15 +12,16 @@ const GalleryList = (props) => {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
   const [totalHits, setTotalHits] = useState(null);
-  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const itemRef = useRef(null);
 
   useEffect(() => {
-    setQuery(props.query);
+    setImages([]);
     setPage(1);
     setPerPage(12);
+    setQuery(props.query);
   }, [props.query]);
 
   useEffect(() => {
@@ -31,7 +32,9 @@ const GalleryList = (props) => {
         try {
           const data = await fetchMedia(query, page);
 
-          if (data.totalHits === 0) {
+          if (data.hits.length === 0) {
+            setPage(1);
+            window.scrollTo(0, 0);
             throw new Error(`Sorry, no images for ${query}`);
           }
 
@@ -63,30 +66,32 @@ const GalleryList = (props) => {
 
   const totalPage = Math.ceil(totalHits / perPage);
 
+  if (!query) {
+    return null;
+  }
+
   return (
     <>
       {error ? (
-        <h1>No images</h1>
+        <h1>No images founded</h1>
       ) : (
-        <>
-          {!query ? (
-            <p>Enter search value</p>
-          ) : (
-            <ul className={s.imageGallery}>
-              <GalleryItem
-                images={images}
-                perPage={perPage}
-                itemRef={itemRef}
-              />
-            </ul>
-          )}
+        <div className={s.galleryList}>
+          <ul className={s.imageGallery}>
+            <GalleryItem images={images} perPage={perPage} itemRef={itemRef} />
+          </ul>
+
           {isLoading && <Spinner />}
-          {totalHits > perPage && totalPage > page && (
-            <Button type={'button'} method={onChangePage}>
-              Load More
+
+          {totalHits > perPage && totalPage > page ? (
+            <Button
+              className={s.loadMoreBtn}
+              type={'button'}
+              method={onChangePage}
+            >
+              <span>Load More</span>
             </Button>
-          )}
-        </>
+          ) : null}
+        </div>
       )}
     </>
   );

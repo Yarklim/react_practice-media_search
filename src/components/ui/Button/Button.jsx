@@ -1,8 +1,8 @@
-import React from 'react';
+import s from './Button.module.scss';
 
 const Button = ({ type, method, children }) => {
   return (
-    <button type={type} onClick={method || null}>
+    <button className={s.button} type={type} onClick={method || null}>
       {children}
     </button>
   );
