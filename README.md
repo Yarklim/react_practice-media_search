@@ -1,4 +1,4 @@
-# React Practice - Media Stock App
+# React Practice - Media Search App
 
 ## Tech Stack:  
 * React  
