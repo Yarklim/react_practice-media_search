@@ -57,7 +57,6 @@ const GalleryList = (props) => {
   };
 
   useEffect(() => {
-    console.log(itemRef.current);
     itemRef.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
@@ -71,11 +70,11 @@ const GalleryList = (props) => {
   }
 
   return (
-    <>
+    <div className={s.galleryList}>
       {error ? (
         <h1>No images founded</h1>
       ) : (
-        <div className={s.galleryList}>
+        <>
           <ul className={s.imageGallery}>
             <GalleryItem images={images} perPage={perPage} itemRef={itemRef} />
           </ul>
@@ -83,17 +82,13 @@ const GalleryList = (props) => {
           {isLoading && <Spinner />}
 
           {totalHits > perPage && totalPage > page ? (
-            <Button
-              className={s.loadMoreBtn}
-              type={'button'}
-              method={onChangePage}
-            >
+            <Button type={'button'} method={onChangePage}>
               <span>Load More</span>
             </Button>
           ) : null}
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 
