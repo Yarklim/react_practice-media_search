@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react_practice-media_search/static/css/main.ce4fc437.css",
+    "main.js": "/react_practice-media_search/static/js/main.3df8fb41.js",
+    "index.html": "/react_practice-media_search/index.html",
+    "main.ce4fc437.css.map": "/react_practice-media_search/static/css/main.ce4fc437.css.map",
+    "main.3df8fb41.js.map": "/react_practice-media_search/static/js/main.3df8fb41.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ce4fc437.css",
+    "static/js/main.3df8fb41.js"
+  ]
+}
