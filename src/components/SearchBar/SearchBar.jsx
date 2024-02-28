@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import Input from '../ui/Input';
-import Button from '../ui/Button/Button';
+
+import IconSearch from '../ui/IconSearch/IconSearch';
 import s from './SearchBar.module.scss';
 
 const SearchBar = ({ onSubmit }) => {
@@ -36,9 +37,9 @@ const SearchBar = ({ onSubmit }) => {
         // autoComplete="off"
         autoFocus
       />
-      <Button type="submit">
-        <span>Search</span>
-      </Button>
+      <button type="submit">
+        <IconSearch className={s.icon} />
+      </button>
     </form>
   );
 };
