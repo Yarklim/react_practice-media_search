@@ -2,6 +2,7 @@
 
 ## Tech Stack:  
 * React  
-* Sass  
+* React Router 
+* Module SCSS  
 * Axios  
 * React Toastify
